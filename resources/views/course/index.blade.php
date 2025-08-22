@@ -3,6 +3,9 @@
 @section('styles')
 <link rel="stylesheet" href="{{ url('front-assets/plugins/summernote/summernote-bs4.min.css') }}">
 @endsection 
+@php 
+//echo "<pre>";print_r($records);die;
+@endphp
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -13,40 +16,55 @@
 		<div class="page-header">
 			<div class="row align-items-center">
 				<div class="col-md-4">
-					<h3 class="page-title">{{ __('email_management') }}</h3>
+					<h3 class="page-title">{{ __('Courses') }}</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="#">{{ __('dashboard') }}</a></li>
-						<li class="breadcrumb-item active">{{ __('email_management') }}</li>
+						<li class="breadcrumb-item active">{{ __('Courses') }}</li>
 					</ul>
+				</div>
+				<div class="col-md-8 float-end ms-auto">
+					<div class="d-flex title-head">
+						<a href="{{ route('learning-hub-course-add') }}" class="btn add-btn"><i class="la la-plus-circle"></i> Add Courses</a>
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /Page Header -->
 		<hr>
+		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="table-responsive">
 					<table class="table table-striped custom-table datatable">
 						<thead>
 							<tr>
-								<th>{{ __('email_subject') }}</th>
+								<th>{{ __('Course name') }}</th>
+								<th>{{ __('Short desc.') }}</th>
+								<th>{{ __('Long desc.') }}</th>
+								<th>{{ __('Videos') }}</th>
 								<th class="text-end">{{ __('action') }}</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($data as $val)
+						@if($records->isNotEmpty())
+							@foreach($records as $record)
 							<tr>
-								<td>{{ $val->message_subject ?? ''}}</td>
+								<td>{{ $record->course_name ?? '' }}</td>
+								<td>{{ \Illuminate\Support\Str::words($record->short_desc ?? '', 10, '...') }}</td>
+								<td>{{ \Illuminate\Support\Str::words($record->long_desc ?? '', 10, '...') }}</td>
+								<td><video controls src="{{ url('uploads/courses/'. $record->course_files[0]->files) }}" height="60" width="60"></td>
 								<td class="text-end">
-									<div class="dropdown dropdown-action">
+								<div class="dropdown dropdown-action">
 										<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item edit-product-code" href="{{ route('email-management-edit', $val->id) }}"><i class="fa-solid fa-pencil m-r-5"></i> {{ __('edit') }}</a>
+											<a class="dropdown-item" href="{{ route('learning-hub-course-edit', $record->id) }}"><i class="fa-solid fa-pencil m-r-5"></i> {{ __('edit') }}</a>
+											<a class="dropdown-item delete-course text-danger" href="javascript:void(0);" data-id="{{ $record->id ?? '' }}" data-url="{{ route('learning-hub-course-delete') }}"><i class="fa-regular fa-trash-can m-r-5"></i> {{ __('delete') }}</a>
 										</div>
 									</div>
 								</td>
 							</tr>
 							@endforeach
+						@endif	
 						</tbody>
 					</table>
 				</div>
@@ -55,11 +73,13 @@
 	</div>
 </div>
 	<!-- /Page Content -->
-@include('modal.email-management-modal')
+
 @include('modal.common')
 @endsection 
 @section('scripts')
-{{--<script src="{{ url('front-assets/js/page/email_management.js') }}"></script>--}}
+<script src="{{ url('front-assets/js/page/courses.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="{{ url('front-assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
 //var csrfToken = "{{ csrf_token() }}";
@@ -85,6 +105,7 @@ $( document ).ready(function() {
 			},
 		}
 	});
+	
 });
 </script>
 @endsection

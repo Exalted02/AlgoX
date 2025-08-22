@@ -90,7 +90,8 @@
 				</li>
 				<li class="mb-3">
 					<button type="button" class="btn btn-square btn-outline-primary w-100"><i class="las la-user-check"></i> <span>Administrator<span></button>
-				</li>	
+				</li>
+						
 				{{--<li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
 					<a href="{{ route('users.index')}}"><i class="la la-user"></i> <span> User Accounts </span></a>
 				</li>
@@ -102,16 +103,32 @@
 				</li>
 				<li class="{{ request()->routeIs('kyc') ? 'active' : '' }}">
 					<a href="{{ route('kyc')}}"><i class="la la-crosshairs"></i> <span> KYC </span></a>
-				</li>
+				</li>--}}
 				<li class="{{ request()->routeIs('certificate.index') ? 'active' : '' }}">
 					<a href="{{ route('certificate.index')}}"><i class="la la-certificate"></i> <span> Certificate </span></a>
 				</li>
+				
+				<li class="{{ request()->routeIs('learning-hub-course','learning-hub-course-add','learning-hub-course-edit') ? 'active' : '' }}">
+					<a href="{{ route('learning-hub-course') }}">
+						<i class="la la-envelope"></i> 
+						<span>{{ __('Learning Hub Course') }}</span>
+					</a>
+				</li>
+				<li class="submenu">
+						<a href="#" class="{{ request()->routeIs('articles','case-studies','market-tips','article-add','article-edit','case-studies-add','case-studies-edit','market-tips-add','market-tips-edit') ? 'subdrop' : '' }}"><i class="la la-dashcube"></i> <span> News Letter</span> <span class="menu-arrow"></span></a>
+						<ul style="{{ request()->routeIs('articles','case-studies','market-tips','article-add','article-edit','case-studies-add','case-studies-edit','market-tips-add','market-tips-edit') ? 'display:block' : '' }}">
+							<li><a href="{{ route('articles')}}" class="{{ request()->routeIs('articles') || request()->routeIs('article-add') || request()->routeIs('article-edit') ? 'menu-active' : '' }}">Articles</a></li>
+							<li><a href="{{ route('case-studies')}}" class="{{ request()->routeIs('case-studies') || request()->routeIs('case-studies-add') || request()->routeIs('case-studies-edit') ? 'menu-active' : '' }}">Case Studies</a></li>
+							<li><a href="{{ route('market-tips')}}" class="{{ request()->routeIs('market-tips') || request()->routeIs('market-tips-add') || request()->routeIs('market-tips-edit') ? 'menu-active' : '' }}">Market Tips</a></li>
+						</ul>
+					</li>
+
 				<li class="{{ request()->routeIs('email-management','email-management-edit') ? 'active' : '' }}">
 					<a href="{{ route('email-management') }}"><i class="la la-envelope"></i> <span> {{ __('email_management') }} </span></a>
 				</li>
 				<li class="{{ request()->routeIs('user.email-settings') ? 'active' : '' }}">
 					<a href="{{ route('user.email-settings') }}"><i class="la la-cog"></i> <span> {{ __('email_settings') }} </span></a>
-				</li>--}}
+				</li>
 				@endif
 				<li class="{{ request()->routeIs('logout') ? 'active' : '' }}">
 					<a href="{{ route('logout') }}"><i class="la la-sign-out-alt"></i> <span> {{ __('logout') }} </span></a>

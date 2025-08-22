@@ -595,3 +595,95 @@ small, .small {
 	}
 }
 
+/*-------22-08-2025----------*/
+.custom-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  min-width: 150px;
+}
+
+.upload-icon {
+  color: #555;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+#preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 29px;
+}
+
+.preview-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 10px; */
+  /* overflow: hidden; */
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.remove-image {
+	position: absolute;
+    top: -10px;
+	right: -10px;
+    background: #E7E7E7;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/*.small-swal {
+    padding: 1rem !important; 
+    min-height: auto !important; 
+    height: 220px !important;   
+}
+.small-swal .swal2-title {
+    font-size: 16px !important;
+    margin-bottom: 8px !important;
+}
+.small-swal .swal2-html-container {
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+}*/
+.small-swal {
+    padding: 1rem !important;
+	 
+}
+
+.small-swal-title {
+    margin: 5px 0 !important;
+    font-size: 16px !important;
+}
+
+.small-swal-text {
+    margin: 5px 0 !important;
+    font-size: 16px !important;
+}
+
+.small-swal-icon {
+    margin: 0 auto 5px auto !important;
+    transform: scale(0.8);
+}

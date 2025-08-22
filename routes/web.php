@@ -18,6 +18,8 @@ use App\Http\Controllers\PayoutsController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\LearningHubCourseController;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,8 +126,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		
 		Route::get('/challenges', [ChallengesController::class, 'index'])->name('index');
 		Route::get('/challenges/data', [ChallengesController::class, 'getChallenges'])->name('data');
-
-
+		
+		
 		Route::post('/challenges/check-email', [ChallengesController::class, 'check_email'])->name('check-email');
 		Route::post('/challenges/trader-challenge-amount', [ChallengesController::class, 'trader_challenge_amount'])->name('trader-challenge-amount');
 		Route::post('/challenges/challenge-submit', [ChallengesController::class, 'challenge_submit'])->name('challenge-submit');
@@ -176,7 +178,38 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	//ChangePassword
 	Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password');
 	Route::post('/change-password', [ChangePasswordController::class, 'save_data'])->name('change-password-save');
-
+	
+	// learning hub cources
+	Route::get('/learning-hub-course', [LearningHubCourseController::class,'index'])->name('learning-hub-course');
+	Route::get('/learning-hub-course-add', [LearningHubCourseController::class,'add'])->name('learning-hub-course-add');
+	Route::post('/learning-hub-course-create', [LearningHubCourseController::class,'create'])->name('learning-hub-course-create');
+	Route::get('/learning-hub-course-edit/{id}', [LearningHubCourseController::class,'edit'])->name('learning-hub-course-edit');
+	Route::post('/learning-hub-course-delete', [LearningHubCourseController::class,'delete_course'])->name('learning-hub-course-delete');
+	Route::post('/learning-hub-course-update', [LearningHubCourseController::class,'update_course'])->name('learning-hub-course-update');
+	
+	// newsletter 
+	Route::get('/articles', [NewsletterController::class,'articles'])->name('articles');
+	Route::get('/article-add', [NewsletterController::class,'article_add'])->name('article-add'); 
+	Route::post('/article-create', [NewsletterController::class,'article_create'])->name('article-create');
+	Route::get('/article-edit/{id}', [NewsletterController::class,'article_edit'])->name('article-edit');
+	Route::post('/article-update', [NewsletterController::class,'article_update'])->name('article-update');
+	Route::post('/article-delete', [NewsletterController::class,'article_delete'])->name('article-delete');
+	
+	
+	Route::get('/case-studies', [NewsletterController::class,'case_studies'])->name('case-studies');
+	Route::get('/case-studies-add', [NewsletterController::class,'case_studies_add'])->name('case-studies-add'); 
+	Route::post('/case-studies-create', [NewsletterController::class,'case_studies_create'])->name('case-studies-create');
+	Route::get('/case-studies-edit/{id}', [NewsletterController::class,'case_studies_edit'])->name('case-studies-edit');
+	Route::post('/case-studies-update', [NewsletterController::class,'case_studies_update'])->name('case-studies-update');
+	Route::post('/case-studies-delete', [NewsletterController::class,'case_studies_delete'])->name('case-studies-delete');
+	
+	Route::get('/market-tips', [NewsletterController::class,'market_tips'])->name('market-tips');
+	Route::get('/market-tips-add', [NewsletterController::class,'market_tips_add'])->name('market-tips-add'); 
+	Route::post('/market-tips-create', [NewsletterController::class,'market_tips_create'])->name('market-tips-create');
+	Route::get('/market-tips-edit/{id}', [NewsletterController::class,'market_tips_edit'])->name('market-tips-edit');
+	Route::post('/market-tips-update', [NewsletterController::class,'market_tips_update'])->name('market-tips-update');
+	Route::post('/market-tips-delete', [NewsletterController::class,'market_tips_delete'])->name('market-tips-delete');
+	
 	//EmailSettings
 	Route::get('/email-settings', [EmailSettingsController::class, 'index'])->name('user.email-settings');
 	Route::post('/email-settings', [EmailSettingsController::class, 'save_data'])->name('email-settings-save');
