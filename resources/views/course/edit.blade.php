@@ -73,21 +73,23 @@
 									</div>--}}
 								</div>
 								<div class="row col-sm-12 mt-4">
-								
-								@if($data->course_files->isNotEmpty())
-									<div class="preview-container-edit">
+								<div class="preview-container-edit d-flex flex-wrap gap-2">
+									@if($data->course_files->isNotEmpty())
+									{{--<div class="preview-container-edit">--}}
 										@foreach($data->course_files as $file)
 											<div class="preview-item">
 												<video src="{{ url('uploads/courses/' . $file->files) }}" controls style="max-width:120px; max-height:120px;" class="preview-image-edit"></video>
 												<button type="button" class="remove-image-edit" data-file-id="{{ $file->id }}" data-url="{{ route('delete-course-file')}}">&times;</button>
 											</div>
 										@endforeach
-									</div>
-									</div>
+										{{--</div>--}}
 									@endif
-									<div class="col-md-8 d-flex flex-wrap gap-2" id="preview-container">
-									
+									<div class="col-md-3 d-flex flex-wrap gap-2" id="preview-container">
+									</div>
+								  </div>
 								</div>
+									
+									
 							</div>
 							<div class="submit-section">
 								<button class="btn btn-primary submit-btn update-courses" type="button">Update</button>
