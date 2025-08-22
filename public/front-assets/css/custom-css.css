@@ -655,6 +655,45 @@ small, .small {
     font-size: 16px;
     cursor: pointer;
 }
+/*.preview-image-edit {
+  width: 76px;
+  height: 65px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}*/
+.preview-image-edit {
+  width: 73px;
+  height: 73px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 0px; 
+  margin-bottom: 0px; 
+}
+.preview-container-edit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.preview-item {
+  position: relative; 
+}
+.remove-image-edit {
+  position: absolute;
+  top: -5px;
+  right: 2px;
+  background: #E7E7E7;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
 /*.small-swal {
     padding: 1rem !important; 
     min-height: auto !important; 

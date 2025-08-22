@@ -62,23 +62,31 @@
 									<div class="col-md-4">
 										<label for="lo_file"></label>
 										<div class="upload-wrapper">
-										  <input type="file" name="lo_file[]" id="lo_file" multiple style="display: none;">
+										  <input type="file" name="lo_file[]" id="lo_file" accept="video/*" multiple style="display: none;">
 										  <label for="lo_file" class="custom-upload-label">
 											<span class="upload-text">Upload image</span>
 											<i class="fa fa-upload upload-icon"></i>
 										  </label>
 										</div>
 									</div>
-									@if($data->course_files->isNotEmpty())
+									{{--<div class="col-md-8 d-flex flex-wrap gap-2" id="preview-container">
+									</div>--}}
+								</div>
+								<div class="row col-sm-12 mt-4">
+								
+								@if($data->course_files->isNotEmpty())
+									<div class="preview-container-edit">
 										@foreach($data->course_files as $file)
-											
-												<video src="{{ url('uploads/courses/' . $file->files) }}" controls style="max-width:120px; max-height:120px;" class="preview-image"></video>
-												<button type="button" class="remove-image" data-file-id="{{ $file->id }}">&times;</button>
-											
+											<div class="preview-item">
+												<video src="{{ url('uploads/courses/' . $file->files) }}" controls style="max-width:120px; max-height:120px;" class="preview-image-edit"></video>
+												<button type="button" class="remove-image-edit" data-file-id="{{ $file->id }}" data-url="{{ route('delete-course-file')}}">&times;</button>
+											</div>
 										@endforeach
+									</div>
+									</div>
 									@endif
 									<div class="col-md-8 d-flex flex-wrap gap-2" id="preview-container">
-									</div>
+									
 								</div>
 							</div>
 							<div class="submit-section">

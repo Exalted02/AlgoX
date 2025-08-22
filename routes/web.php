@@ -186,6 +186,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/learning-hub-course-edit/{id}', [LearningHubCourseController::class,'edit'])->name('learning-hub-course-edit');
 	Route::post('/learning-hub-course-delete', [LearningHubCourseController::class,'delete_course'])->name('learning-hub-course-delete');
 	Route::post('/learning-hub-course-update', [LearningHubCourseController::class,'update_course'])->name('learning-hub-course-update');
+	Route::post('/delete-course-file', [LearningHubCourseController::class,'delete_course_file'])->name('delete-course-file');
 	
 	// newsletter 
 	Route::get('/articles', [NewsletterController::class,'articles'])->name('articles');

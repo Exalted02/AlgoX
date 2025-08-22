@@ -52,7 +52,11 @@
 								<td>{{ $record->course_name ?? '' }}</td>
 								<td>{{ \Illuminate\Support\Str::words($record->short_desc ?? '', 10, '...') }}</td>
 								<td>{{ \Illuminate\Support\Str::words($record->long_desc ?? '', 10, '...') }}</td>
-								<td><video controls src="{{ url('uploads/courses/'. $record->course_files[0]->files) }}" height="60" width="60"></td>
+								<td>
+								@if(isset($record->course_files[0]->files))
+								<video controls src="{{ url('uploads/courses/'. $record->course_files[0]->files)}}" height="60" width="60">
+							@endif
+								</td>
 								<td class="text-end">
 								<div class="dropdown dropdown-action">
 										<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

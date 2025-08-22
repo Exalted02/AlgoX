@@ -49,6 +49,8 @@ $(document).ready(function() {
 		selectedFiles = selectedFiles.filter(file => file !== null);
 	});
 	
+	
+	
 	$(document).on('click','.save-courses', function(){
 		let course_name = $('#course_name').val().trim();
 		let short_desc = $('#short_desc').val().trim();
@@ -265,6 +267,24 @@ $(document).ready(function() {
 					}
 				});
 			}
+		});
+	});
+	
+	$(document).on('click', '.remove-image-edit', function(e) {
+		let id = $(this).data('file-id');
+		$(this).closest('.preview-item').remove();
+		let URL = $(this).data('url');
+		$.ajax({
+			url: URL,
+			type: "POST",
+			data: {id:id, _token: csrfToken},
+			dataType: 'json',
+			success: function(response) {
+				//$('#success_msg').modal('show');
+				/*setTimeout(() => {
+					window.location.reload();
+				}, "2000");*/
+			},
 		});
 	});
 

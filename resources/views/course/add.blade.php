@@ -60,7 +60,7 @@
 									<div class="col-md-4">
 										<label for="lo_file"></label>
 										<div class="upload-wrapper">
-										  <input type="file" name="lo_file[]" id="lo_file" multiple style="display: none;">
+										  <input type="file" name="lo_file[]" id="lo_file" accept="video/*" multiple style="display: none;">
 										  <label for="lo_file" class="custom-upload-label">
 											<span class="upload-text">Upload image</span>
 											<i class="fa fa-upload upload-icon"></i>

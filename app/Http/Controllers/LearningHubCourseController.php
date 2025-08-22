@@ -12,6 +12,7 @@ class LearningHubCourseController extends Controller
     {
 		$data = [];
 		$data['records'] = LearningHubCourse::with('course_files')->where('status', '!=', 2)->get();
+		//echo "<pre>";print_r($request->all());die;
         return view('course.index', $data);
     }
 	public function add()
@@ -95,7 +96,7 @@ class LearningHubCourseController extends Controller
 	}
 	public function delete_course(Request $request)
 	{
-		LearningHubCourse::where('id', $request->id)->delete();
+		LearningHubCourse::where('id', $request->id)->update(['status'=>2]);
 		LearningHubCourseFile::where('course_id', $request->id)->delete();
 		// unlink files 
 		
@@ -113,5 +114,19 @@ class LearningHubCourseController extends Controller
 		}
 		
 		return response()->json(['success'=>true]);
+	}
+	public function delete_course_file(Request $request)
+	{
+		$id = $request->id;
+		$fileData = LearningHubCourseFile::where('id', $id)->first();
+		$f_name = $fileData ? $fileData->files : '';
+		$filePath = public_path('uploads/courses/' . $f_name);
+		if (file_exists($filePath)) {
+			unlink($filePath);
+		}
+		
+		LearningHubCourseFile::where('id', $id)->delete();
+		
+		return response()->json(['message'=>'success']);
 	}
 }
